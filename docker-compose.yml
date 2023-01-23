@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  go-app:
+    container_name: go-app
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: dev
+      args:
+        SERVICE_PORT: ${SERVICE_PORT}
+    image: go-app:latest
+    ports:
+      - ${SERVICE_PORT}:${SERVICE_PORT}
+    volumes:
+      - .:/app
+    env_file:
+      - .env
